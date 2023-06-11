@@ -1,0 +1,719 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#orientationLock {
+    display: none;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #2d2d2d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 4vw;
+}
+
+@keyframes dropInfo {
+    0% {
+        top: -24vh;
+    }
+
+    10% {
+        top: 1vw;
+    }
+
+    90% {
+        top: 1vw;
+    }
+
+    100% {
+        top: -24vh;
+    }
+}
+
+.info {
+    z-index: 6;
+    position: fixed;
+    top: 1vw;
+    text-align: center;
+    min-width: 10vw;
+    max-width: 50vw;
+    max-height: 24vh;
+    overflow: auto;
+    border-radius: 4px;
+    background: #5072a7;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2vw;
+    padding: 0.4vw;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.12);
+    animation: dropInfo 10s linear;
+}
+
+#startScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.letter {
+    --deg: 0deg;
+    --offset: max(50vw, 50vh);
+    --offset-x: calc(sin(var(--deg)) * var(--offset));
+    --offset-y: calc(cos(var(--deg)) * var(--offset));
+    --rotation: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    margin: 0;
+    transform: translateX(var(--offset-x)) translateY(var(--offset-y)) rotate(calc(90deg * var(--rotation)));
+    height: 10vw;
+    animation: toCenter 1.8s ease-out, blink 706ms linear infinite;
+}
+
+@keyframes toCenter {
+    to {
+        transform: none;
+        height: 0vw;
+    }
+}
+
+@keyframes blink {
+    0% {
+        filter: none;
+    }
+
+    5% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #80ff00);
+    }
+
+    8% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #80ff00) drop-shadow(-3px -3px #ff0081);
+    }
+
+    14% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #80ff00) drop-shadow(-3px -3px #ff0081) drop-shadow(-4px -2px #bf00ff);
+    }
+
+    20% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #80ff00) drop-shadow(-3px -3px #ff0081) drop-shadow(-4px -2px #bf00ff);
+    }
+
+    38% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #80ff00) drop-shadow(-4px -2px #ff6600);
+    }
+
+    52% {
+        filter: none;
+    }
+}
+
+@keyframes blink {
+    0% {
+        filter: none;
+    }
+
+    5% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #80ff00);
+    }
+
+    8% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #fed3cd) drop-shadow(-3px -3px #ef5799);
+    }
+
+    14% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #fed3cd) drop-shadow(-3px -3px #ef5799) drop-shadow(-4px -2px #8168bc);
+    }
+
+    20% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #fed3cd) drop-shadow(-3px -3px #ef5799) drop-shadow(-4px -2px #8168bc);
+    }
+
+    38% {
+        filter: drop-shadow(1px -1px black) drop-shadow(5px 5px #fed3cd) drop-shadow(-4px -2px #e87191);
+    }
+
+    52% {
+        filter: none;
+    }
+}
+
+/* #fed3cd #d692cc */
+
+#startHeader {
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 4vw;
+    text-shadow: 0.2vw 0.2vw lightgray;
+    background-color: white;
+    box-shadow: 0.4vw 0vw 2vw white, -0.4vw 0vw 2vw white, 0vw 0.4vw 2vw white, 0vw -0.4vw 2vw white;
+}
+
+#songInput {
+    display: none;
+}
+
+.button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2vw;
+    text-align: center;
+    color: black;
+    background-color: #f3f3f3;
+    border: 1px solid #2d2d2d;
+    border-radius: 4px;
+    padding: 0.2vw;
+}
+
+.button:hover {
+    background-color: #dddddd;
+}
+
+.button:active {
+    background-color: #b0b0b0;
+}
+
+.button:disabled {
+    pointer-events: none;
+    color: #8d8d8d;
+}
+
+#songInputBtn {
+    min-width: 16vw;
+    max-width: 60vw;
+    word-break: keep-all;
+    overflow: auto;
+}
+
+#songInputFileName {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2vw;
+}
+
+#startBtn {
+    width: 16vw;
+    margin: 1vw;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    border: 0.6vw solid #f3f3f3;
+    border-top: 0.6vw solid #2d2d2d;
+    border-radius: 50%;
+    margin-top: 1vw;
+    width: 4vw;
+    height: 4vw;
+    animation: spin 2s linear infinite;
+}
+
+.overlay {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#loadOverlay>.loader {
+    width: 2vw;
+    height: 2vw;
+    border-width: 0.3vw;
+    animation: spin 1s linear infinite;
+}
+
+#configBtn {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 2vw;
+    height: 2vw;
+    margin: 1.4vw;
+}
+
+#configOverlay {
+    z-index: 2;
+}
+
+#configDialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vw;
+    width: 40vw;
+    height: 80vh;
+    border-radius: 12px;
+    background: white;
+    overflow: auto;
+}
+
+#configInput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+#configInput>label {
+    margin-bottom: 0.6vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.6vw;
+}
+
+#configInput>input {
+    margin-bottom: 2vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.6vw;
+}
+
+#configSubmit {
+    margin-top: 0.4vw;
+    margin-bottom: 0.4vw;
+    width: 50%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.6vw;
+}
+
+#configReset {
+    margin-bottom: 0.4vw;
+    width: 50%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.6vw;
+}
+
+#configCancel {
+    width: 50%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.6vw;
+}
+
+#muteBtn {
+    z-index: 1;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 2vw;
+    height: 2vw;
+    margin: 1.4vw;
+}
+
+#gameScreen {
+    position: relative;
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: none;
+}
+
+#gameScreen video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#pauseOverlay {
+    display: none;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2vw;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: default;
+}
+
+#pauseContinueBtn,
+#pauseRestartBtn {
+    width: 20vw;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 2vw;
+    border-width: 0px;
+    border-radius: 0px;
+}
+
+#pauseContinueBtn {
+    border-bottom-width: 2px;
+}
+
+#pauseContinueBtn:hover,
+#pauseRestartBtn:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+#pauseContinueBtn:active,
+#pauseRestartBtn:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#gameScreenHead {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 4vw;
+    background-color: white;
+    box-shadow:
+        0.4px 1px 1px hsl(0deg 0% 0% / 0.02),
+        1px 2px 2px hsl(0deg 0% 0% / 0.02),
+        2px 4px 4px hsl(0deg 0% 0% / 0.02),
+        4px 8px 8px hsl(0deg 0% 0% / 0.02),
+        8px 16px 16px hsl(0deg 0% 0% / 0.02)
+}
+
+#pointCounter {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2vw;
+    padding: 0.2vw;
+}
+
+.noteColumn {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    height: 100vh;
+    width: 12vw;
+}
+
+@keyframes visualizeHit {
+    0% {
+        box-shadow: 0px 0px 0px 0px white;
+    }
+
+    50% {
+        box-shadow: 0px 16px 10px -10px #96d439;
+    }
+
+    100% {
+        box-shadow: 0px 0px 0px 0px white;
+    }
+}
+
+@keyframes visualizeMiss {
+    0% {
+        box-shadow: 0px 0px 0px 0px white;
+    }
+
+    50% {
+        box-shadow: 0px 14px 8px -8px #e85d5c;
+    }
+
+    100% {
+        box-shadow: 0px 0px 0px 0px white;
+    }
+}
+
+.noteCollector {
+    width: 12vw;
+    height: 2.4vw;
+    margin-bottom: 4vw;
+    padding: 0.2vw;
+    color: #bebebe;
+    border-bottom: 2px dashed #8d8d8d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2vw;
+    text-align: center;
+    user-select: none;
+}
+
+.noteCollectorActive {
+    color: black;
+    border-bottom: 4px double #2d2d2d;
+}
+
+@keyframes noteFall {
+    0% {
+        top: 0vh;
+    }
+
+    100% {
+        top: calc(100vh - 6vw);
+    }
+}
+
+.note {
+    position: absolute;
+    top: 0vh;
+    animation: noteFall 2s linear;
+    height: 2vw;
+    width: auto;
+    user-select: none;
+}
+
+#resultScreen {
+    display: none;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    cursor: default;
+}
+
+#grade {
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 6vw;
+    margin: 2vw;
+    text-shadow: 0.2vw 0.2vw lightgray;
+}
+
+#score {
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 1.8vw;
+    min-width: 27vw;
+    text-align: center;
+    margin-bottom: 1.2vw;
+    padding-bottom: 0.4vw;
+    border-bottom: 2px solid black;
+}
+
+#restartBtn,
+#reloadBtn {
+    font-size: 1.4vw;
+    width: 24vw;
+}
+
+#reloadBtn {
+    margin: 0.4vw;
+}
+
+/* mobile */
+@media only screen and (max-width: 768px) {
+    #orientationLock {
+        font-size: 1.2vw;
+    }
+
+    .info {
+        min-width: 50vw;
+        max-width: 75vw;
+        max-height: 10vh;
+        font-size: 4vw;
+        padding: 0.8vw;
+    }
+
+    .letter {
+        display: none;
+    }
+
+    #startScreen {
+        justify-content: unset;
+    }
+
+    #startHeader {
+        font-size: 8vw;
+        margin-top: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-shadow: 0.4vw 0.4vw lightgray;
+        background-color: white;
+        box-shadow: 2vw 0vw 4vw white, -2vw 0vw 4vw white, 0vw 2vw 4vw white, 0vw -2vw 4vw white;
+    }
+
+    .button {
+        font-size: 4vw;
+        padding: 0.8vw;
+        border-radius: 6px;
+    }
+
+    #songInputBtn {
+        min-width: 50vw;
+        max-width: 75vw;
+    }
+
+    #songInputFileName {
+        font-size: 4vw;
+    }
+
+    #startBtn {
+        width: 50vw;
+        margin: 2vw;
+    }
+
+    .loader {
+        width: 12vw;
+        height: 12vw;
+        margin-top: 2vw;
+        border-width: 1.4vw;
+    }
+
+    #loadOverlay>.loader {
+        width: 6vw;
+        height: 6vw;
+        border-width: 0.7vw;
+    }
+
+    #configBtn,
+    #muteBtn {
+        width: 6vw;
+        height: 6vw;
+        margin: 2.8vw;
+    }
+
+    #configDialog {
+        padding: 4vw;
+        width: 80vw;
+        height: 60vh;
+        margin-bottom: 20vh;
+    }
+
+    #configInput>label {
+        margin-bottom: 1.4vw;
+        font-size: 4.8vw;
+    }
+
+    #configInput>input {
+        margin-bottom: 4.2vw;
+        font-size: 4.8vw;
+    }
+
+    #configSubmit {
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+        font-size: 4.8vw;
+    }
+
+    #configReset {
+        margin-bottom: 1vw;
+        font-size: 4.8vw;
+    }
+
+    #configCancel {
+        font-size: 4.8vw;
+    }
+
+    #gameScreen video {
+        height: auto;
+        object-fit: contain;
+        top: 42vw;
+    }
+
+    #pauseContinueBtn,
+    #pauseRestartBtn {
+        width: 40vw;
+        font-size: 6vw;
+        border-width: 0px;
+        border-radius: 0px;
+    }
+
+    #pauseContinueBtn {
+        border-bottom-width: 2px;
+    }
+
+    #pauseRestartBtn {
+        margin-bottom: calc(50% - 6.8vw);
+    }
+
+    #gameScreenHead {
+        height: 14vw;
+    }
+
+    #pointCounter {
+        font-size: 4vw;
+        padding: 0.4vw;
+    }
+
+    .noteColumn {
+        width: 18vw;
+    }
+
+    .noteCollector {
+        width: 18vw;
+        height: 4.8vw;
+        margin-bottom: 28vh;
+        padding: 0.4vw;
+        color: rgba(0, 0, 0, 0);
+        font-size: 4vw;
+        border-bottom-width: 3px;
+    }
+
+    .noteCollectorActive {
+        color: rgba(0, 0, 0, 0);
+        border-bottom-width: 6px;
+    }
+
+    @keyframes noteFall {
+        0% {
+            top: 0vh;
+        }
+
+        100% {
+            top: calc(100vh - (28vh + 6vw));
+        }
+    }
+
+    .note {
+        height: 6vw;
+    }
+
+    #grade {
+        font-size: 24vw;
+        margin: 2vw;
+        text-shadow: 0.6vw 0.6vw lightgray;
+    }
+
+    #score {
+        font-family: 'Press Start 2P', sans-serif;
+        font-size: 5.4vw;
+        min-width: 54vw;
+        margin-bottom: 2.4vw;
+        padding-bottom: 0.8vw;
+        border-bottom: 3px solid black;
+    }
+
+    #restartBtn,
+    #reloadBtn {
+        font-size: 4.8vw;
+        width: 48vw;
+    }
+
+    #reloadBtn {
+        margin: 1.2vw;
+        margin-bottom: calc(50vh - 60.4vw);
+    }
+}
