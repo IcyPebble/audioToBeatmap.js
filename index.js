@@ -1,9 +1,9 @@
 const path = require('path');
-const readline = require('readline');
 const ytdl = require('ytdl-core');
 const audioToBeatmap = require('./audioToBeatmapNodeJS');
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname));
 app.use(express.json({ limit: '1gb' }));
@@ -48,21 +48,6 @@ app.post('/audioToBeatmap', (req, res) => {
 });
 
 // open app
-app.listen(8080, () => {
-    import('open').then((open) => {
-        open.default('http://localhost:8080');
-        console.log('Running at http://localhost:8080\nPress CTRL + Q to quit');
-    });
-});
-
-// close on CTRL + Q
-readline.emitKeypressEvents(process.stdin);
-if (process.stdin.isTTY) {
-    process.stdin.setRawMode(true);
-}
-
-process.stdin.on('keypress', (str, key) => {
-    if (key.ctrl && key.name === 'q') {
-        process.exit();
-    }
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
 });
