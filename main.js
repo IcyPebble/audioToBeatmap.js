@@ -558,17 +558,22 @@ configCancel.addEventListener('click', () => {
     configOverlay.style['display'] = 'none';
 })
 
-if (songInput.files.length > 0) {
-    songInput.value = '';
-    startBtn.disabled = true;
-}
-
 songInput.addEventListener('change', () => {
     if (songInput.files.length > 0) {
         songInputBtn.innerHTML = songInput.files[0].name;
 
         startBtn.disabled = false;
     }
+});
+
+// set default file
+fetch('test.mp3').then((res) => res.blob()).then((blob) => {
+    let file = new File([blob], 'test.mp3');
+    let dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    songInput.files = dataTransfer.files;
+    let evt = new Event('change');
+    songInput.dispatchEvent(evt);
 });
 
 function isAudioFileURL(url) {
