@@ -609,72 +609,6 @@ function handleURLInput(value) {
     });
 }
 
-async function getYoutubeTitle(value) {
-    let response = await fetch(
-        `/getYoutubeTitle?URL=${value}`,
-        { method: 'GET' }
-    )
-    let data = await response.json();
-
-    return data.title;
-}
-
-function handleYoutubeInput(url) {
-    loadOverlay.style['display'] = 'flex';
-    fetch(
-        `/getYoutubeAudio?URL=${url}`,
-        { method: 'GET' }
-    ).then((response) => {
-        if (!response.ok) {
-            throw new Error('Bad request');
-        }
-
-        const reader = response.body.getReader();
-        return new ReadableStream({
-            start(controller) {
-                return pump();
-                function pump() {
-                    return reader.read().then(({ done, value }) => {
-                        // When no more data needs to be consumed, close the stream
-                        if (done) {
-                            controller.close();
-                            return;
-                        }
-                        // Enqueue the next data chunk into our target stream
-                        controller.enqueue(value);
-                        return pump();
-                    });
-                }
-            },
-        });
-    })
-        // Create a new response out of the stream
-        .then((stream) => new Response(stream))
-        // Create an object URL for the response
-        .then((response) => response.blob())
-        .then((blob) => {
-            // get file name
-            getYoutubeTitle(url).then((fileName) => {
-                console.log(fileName);
-
-                // set file as input
-                let file = new File([blob], fileName);
-                let dataTransfer = new DataTransfer();
-                dataTransfer.items.add(file);
-                songInput.files = dataTransfer.files;
-                let evt = new Event('change');
-                songInput.dispatchEvent(evt);
-
-                loadOverlay.style['display'] = 'none';
-            });
-        })
-        .catch(() => {
-            // on error
-            loadOverlay.style['display'] = 'none';
-            inform('URL was not accepted.<br>Please use only either Youtube URLs or URLs to audio files in the following formats:<br>.wav, .mp3, .ogg, .acc, .aif, .flac, .iff, .m4a, .mpa, .mpc, .oga, .opus, .snd, .wma, .mp4', 'white', '#cc0000');
-        });
-}
-
 songInputBtn.addEventListener('click', (e) => {
     let x = e.clientX;
     let boundingBox = songInputBtn.getBoundingClientRect();
@@ -691,7 +625,7 @@ songInputBtn.addEventListener('click', (e) => {
             if (isAudioFileURL(URLInput)) {
                 handleURLInput(URLInput);
             } else {
-                handleYoutubeInput(URLInput);
+                inform('URL was not accepted.<br>Please use only URLs to audio files in the following formats:<br>.wav, .mp3, .ogg, .acc, .aif, .flac, .iff, .m4a, .mpa, .mpc, .oga, .opus, .snd, .wma, .mp4', 'white', '#cc0000');
             }
         }
     } else {
@@ -731,7 +665,6 @@ function audioBuffertoMono(buffer) {
         let mono = new Float32Array(channel_1.length);
 
         let length = mono.length;
-        console.log(length);
         for (let i = 0; i < length; i++) {
             mono[i] = (channel_1[i] + channel_2[i]) * 0.5;
         }
@@ -778,45 +711,37 @@ function generateBeatmap() {
     }
 
     // generate beatmap
+    let worker = new Worker('audioToBeatmap_WebWorker.js', { type: "module" });
     let audioCtx = new AudioContext({ sampleRate: 44100 });
     songInput.files[0].arrayBuffer()
         .then((arrayBuffer) => audioCtx.decodeAudioData(arrayBuffer))
         .then((audioBuffer) => {
-            return fetch(
-                '/audioToBeatmap',
-                {
-                    method: 'POST',
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(
-                        {
-                            audioArray: audioBuffertoMono(audioBuffer),
-                            beatsPerSecond: BEATS_PER_SECOND,
-                            successiveThreshold: SUCCESSIVE_THRESHOLD,
-                            longThreshold: null,
-                            filter: FILTER
-                        }
-                    )
-                }
-            )
-        })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Bad request');
-            }
-            return response.json();
-        })
-        .then((beatmap) => {
-            startScreen.removeChild(startScreen.children[3]);
-
-            startBtn.removeEventListener('click', generateBeatmap);
-            startBtn.addEventListener('click', () => { start(beatmap, audio) })
-            startBtn.disabled = false;
+            worker.postMessage(
+                [
+                    audioBuffertoMono(audioBuffer), BEATS_PER_SECOND,
+                    SUCCESSIVE_THRESHOLD, Infinity, FILTER
+                ]
+            );
         })
         .catch(() => {
             // on error
             alert('An error occured while processing the file.\nMake sure that the audio has no more than 2 channels.');
             window.location.reload();
         });
+
+    worker.onmessage = (msg) => {
+        if (typeof msg.data == 'object' && msg.data !== null) {
+            startScreen.removeChild(startScreen.children[3]);
+
+            startBtn.removeEventListener('click', generateBeatmap);
+            startBtn.addEventListener('click', () => { start(msg.data, audio) })
+            startBtn.disabled = false;
+        } else {
+            // on error
+            alert('An error occured while processing the file.\nMake sure that the audio has no more than 2 channels.');
+            window.location.reload();
+        }
+    }
 }
 
 startBtn.addEventListener('click', generateBeatmap);
