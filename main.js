@@ -559,11 +559,7 @@ configCancel.addEventListener('click', () => {
 })
 
 songInput.addEventListener('change', () => {
-    if (songInput.files.length > 0) {
-        songInputBtn.innerHTML = songInput.files[0].name;
-
-        startBtn.disabled = false;
-    }
+    songInputBtn.innerHTML = songInput.files[0].name;
 });
 
 // set default file
