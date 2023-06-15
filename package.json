@@ -11,8 +11,6 @@
   "license": "AGPL-3.0-only",
   "homepage": "https://github.com/IcyPebble/audioToBeatmap.js#readme",
   "dependencies": {
-    "express": "^4.18.2",
-    "essentia.js": "^0.1.3",
-    "ytdl-core": "^4.11.4"
+    "express": "^4.18.2"
   }
 }
