@@ -712,7 +712,7 @@ function generateBeatmap() {
     }
 
     // generate beatmap
-    let worker = new Worker('../audioToBeatmap_WebWorker.js', { type: "module" });
+    let worker = new Worker('audioToBeatmap_WebWorker.js', { type: "module" });
     let audioCtx = new AudioContext({ sampleRate: 44100 });
     songInput.files[0].arrayBuffer()
         .then((arrayBuffer) => audioCtx.decodeAudioData(arrayBuffer))
