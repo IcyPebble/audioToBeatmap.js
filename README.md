@@ -1,6 +1,9 @@
 # audioToBeatmap.js
 
 ## HTML
+```html
+<script src="audioToBeatmap.js" type="module"></script>
+```
 
 ## WebWorker
 ```javascript
