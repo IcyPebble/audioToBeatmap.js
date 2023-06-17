@@ -6,24 +6,24 @@
 **)**
 <table>
 <tr>
-    <td>audioURL</td>
-    <td>Description</td>
+    <td><b>audioURL</b></td>
+    <td>HTML: web url or blob uri of a audio file<br>WebWorker/NodeJS: mono audio signal array {Float32Array}</td>
 </tr>
 <tr>
-    <td>beatsPerSecond</td>
-    <td>Description</td>
+    <td><b>beatsPerSecond</b></td>
+    <td>number of sounds per second of the audio that are analyzed</td>
 </tr>
 <tr>
-    <td>successiveThreshold</td>
-    <td>Description</td>
+    <td><b>successiveThreshold</b></td>
+    <td>minimum time interval between notes in milliseconds</td>
 </tr>
 <tr>
-    <td>longThreshold</td>
-    <td>Description</td>
+    <td><b>longThreshold</b></td>
+    <td>minimum duration in milliseconds for a note to be considered long</td>
 </tr>
 <tr>
-    <td>filter</td>
-    <td>Description</td>
+    <td><b>filter</b></td>
+    <td>whether an equal-loudness filter should be applied or not</td>
 </tr>
 </table>
 
