@@ -6,12 +6,24 @@
 **)**
 <table>
 <tr>
-    <td>Key 1</td>
-    <td>Value 1</td>
+    <td>audioURL</td>
+    <td>Description</td>
 </tr>
 <tr>
-    <td>Key 2</td>
-    <td>Value 2</td>
+    <td>beatsPerSecond</td>
+    <td>Description</td>
+</tr>
+<tr>
+    <td>successiveThreshold</td>
+    <td>Description</td>
+</tr>
+<tr>
+    <td>longThreshold</td>
+    <td>Description</td>
+</tr>
+<tr>
+    <td>filter</td>
+    <td>Description</td>
 </tr>
 </table>
 
