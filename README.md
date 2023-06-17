@@ -1,17 +1,17 @@
 # audioToBeatmap.js
 
 ## Usage
+**async audioToBeatmap(audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true)**
 
 ### HTML
 ```html
 <script src="audioToBeatmap.js" type="module"></script>
 ```
 ```javascript
-audioToBeatmap(
-    AUDIO_URL, BEATS_PER_SECOND, SUCCESSIVE_THRESHOLD, LONG_THRESHOLD, FILTER
-).then((beatmap) => {
+audioToBeatmap(audioURL, beatsPerSecond, successiveThreshold, longThreshold, filter)
+    .then((beatmap) => {
     // process beatmap
-});
+    });
 ```
 
 ### WebWorker
@@ -20,8 +20,7 @@ let worker = new Worker('audioToBeatmap_WebWorker.js', { type: "module" });
 
 // send arguments
 worker.postMessage([
-    MONO_AUDIO_ARRAY, BEATS_PER_SECOND,
-    SUCCESSIVE_THRESHOLD, LONG_THRESHOLD, FILTER
+    monoAudioArray, beatsPerSecond, successiveThreshold, longThreshold, filter
 ]);
 
 // get result
@@ -40,11 +39,10 @@ worker.onmessage = (msg) => {
 ```javascript
 const audioToBeatmap = require('./audioToBeatmap_NodeJS');
 
-audioToBeatmap.audioToBeatmap(
-    AUDIO_URL, BEATS_PER_SECOND, SUCCESSIVE_THRESHOLD, LONG_THRESHOLD, FILTER
-).then((beatmap) => {
+audioToBeatmap.audioToBeatmap(monoAudioArray, beatsPerSecond, successiveThreshold, longThreshold, filter)
+    .then((beatmap) => {
     // process beatmap
-});
+    });
 ```
 
 ## demo
