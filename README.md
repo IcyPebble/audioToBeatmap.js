@@ -1,7 +1,9 @@
 # audioToBeatmap.js
 
 ## Usage
-**async audioToBeatmap(audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true)**
+**async audioToBeatmap(**
+    **audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true**
+**)**
 
 ### HTML
 ```html
