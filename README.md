@@ -2,7 +2,7 @@
 
 ## Usage
 **async audioToBeatmap(<br>**
-    **audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true<br>**
+&emsp;**audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true<br>**
 **)**
 
 ### HTML
