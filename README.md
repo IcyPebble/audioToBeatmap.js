@@ -29,8 +29,6 @@
     <td><b>filter</b></td>
     <td>whether an equal-loudness filter should be applied or not</td>
 </tr>
-</table>
-<table>
 <tr>
     <th colspan="2">Returns</th>
 </tr>
