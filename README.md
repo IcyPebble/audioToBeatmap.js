@@ -29,7 +29,7 @@
     <td><b>filter</b></td>
     <td>whether an equal-loudness filter should be applied or not</td>
 </tr>
-<tr>
+<tr style="border-top: 1px solid black;">
     <th colspan="2">Returns</th>
 </tr>
 <tr></tr>
