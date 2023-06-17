@@ -36,23 +36,19 @@
 <tr>
     <td><b>beatmap</b></td>
     <td>object containing note information in the following format:
-    <pre><code>
-{
+<pre><code>{
     "{time}": {
         "pos": int,
         "type": "normal" | "long_start" | "long_end"
     }
-}
-    </code></pre>
+}</code></pre>
     e.g.:
-    <pre><code>
-{
+<pre><code>{
     "745.9410430839002": {
         "pos": 0,
         "type": "normal"
     }
-}
-    </code></pre>
+}</code></pre>
     </td>
 </tr>
 </table>
