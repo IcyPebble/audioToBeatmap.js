@@ -10,11 +10,11 @@
     <th colspan="2">Parameters</th>
 </tr>
 <tr>
-    <td><b>audioURL</b></td>
+    <td>audioURL</td>
     <td>HTML: web url or blob uri of a audio file<br>WebWorker/NodeJS: mono audio signal array {Float32Array}</td>
 </tr>
 <tr>
-    <td><b>beatsPerSecond</b></td>
+    <td>beatsPerSecond</td>
     <td>number of sounds per second of the audio that are analyzed</td>
 </tr>
 <tr>
@@ -29,7 +29,7 @@
     <td><b>filter</b></td>
     <td>whether an equal-loudness filter should be applied or not</td>
 </tr>
-<tr style="border-top: 1px solid black;">
+<tr>
     <th colspan="2">Returns</th>
 </tr>
 <tr></tr>
