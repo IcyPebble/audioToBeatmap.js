@@ -6,6 +6,9 @@
 **)**
 <table>
 <tr>
+    <th colspan="2">Parameters</th>
+</tr>
+<tr>
     <td><b>audioURL</b></td>
     <td>HTML: web url or blob uri of a audio file<br>WebWorker/NodeJS: mono audio signal array {Float32Array}</td>
 </tr>
@@ -24,6 +27,24 @@
 <tr>
     <td><b>filter</b></td>
     <td>whether an equal-loudness filter should be applied or not</td>
+</tr>
+</table>
+<table>
+<tr>
+    <th colspan="2">Returns</th>
+</tr>
+<tr>
+    <td><b>beatmap</b></td>
+    <td>object containing note information in the following format:<br>
+    <pre><code>
+    {
+        "{time}": {
+            "pos": int,
+            "type": "normal" | "long_start" | "long_end",
+        }
+    }
+    </code></pre>
+    </td>
 </tr>
 </table>
 
