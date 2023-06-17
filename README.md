@@ -1,6 +1,8 @@
 # audioToBeatmap.js
 
-## HTML
+## Usage
+
+### HTML
 ```html
 <script src="audioToBeatmap.js" type="module"></script>
 ```
@@ -12,7 +14,7 @@ audioToBeatmap(
 });
 ```
 
-## WebWorker
+### WebWorker
 ```javascript
 let worker = new Worker('audioToBeatmap_WebWorker.js', { type: "module" });
 
@@ -31,12 +33,12 @@ worker.onmessage = (msg) => {
     } else {
         alert(msg.data); // "ERROR: {error message}"
     }
-}
+};
 ```
 
-## NodeJs
+### NodeJs
 ```javascript
-const audioToBeatmap = require('./audioToBeatmapNodeJS');
+const audioToBeatmap = require('./audioToBeatmap_NodeJS');
 
 audioToBeatmap.audioToBeatmap(
     AUDIO_URL, BEATS_PER_SECOND, SUCCESSIVE_THRESHOLD, LONG_THRESHOLD, FILTER
