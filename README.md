@@ -18,15 +18,15 @@
     <td>number of sounds per second of the audio that are analyzed</td>
 </tr>
 <tr>
-    <td><b>successiveThreshold</b></td>
+    <td>successiveThreshold</td>
     <td>minimum time interval between notes in milliseconds</td>
 </tr>
 <tr>
-    <td><b>longThreshold</b></td>
+    <td>longThreshold</td>
     <td>minimum duration in milliseconds for a note to be considered long</td>
 </tr>
 <tr>
-    <td><b>filter</b></td>
+    <td>filter</td>
     <td>whether an equal-loudness filter should be applied or not</td>
 </tr>
 <tr>
@@ -34,7 +34,7 @@
 </tr>
 <tr></tr>
 <tr>
-    <td><b>beatmap</b></td>
+    <td>beatmap</td>
     <td>
 
 object containing note information in the following format:<br>
