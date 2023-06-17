@@ -4,6 +4,11 @@
 **async audioToBeatmap(<br>**
 &emsp;&emsp;**audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true<br>**
 **)**
+
+|<td colspan="2">Parameters</th>|
+|-------------------------------|
+|1|2|
+
 <table>
 <tr>
     <th colspan="2">Parameters</th>
@@ -37,14 +42,14 @@
     <td><b>beatmap</b></td>
     <td>object containing note information in the following format:
 <pre><code>{
-    "{time}": {
+    "{time in ms}": {
         "pos": int,
         "type": "normal" | "long_start" | "long_end"
     }
 }</code></pre>
     e.g.:
 <pre><code>{
-    "745.9410430839002": {
+    "745": {
         "pos": 0,
         "type": "normal"
     }
