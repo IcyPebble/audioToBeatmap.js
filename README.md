@@ -5,10 +5,6 @@
 &emsp;&emsp;**audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true<br>**
 **)**
 
-|<th colspan="2">Parameters</th>|
-|--------------|----------------|
-|1|2|
-
 <table>
 <tr>
     <th colspan="2">Parameters</th>
@@ -40,20 +36,26 @@
 </tr>
 <tr>
     <td><b>beatmap</b></td>
-    <td>object containing note information in the following format:
-<pre><code>{
+    <td>object containing note information in the following format:<br>
+
+```javascript
+{
     "{time in ms}": {
         "pos": int,
         "type": "normal" | "long_start" | "long_end"
     }
-}</code></pre>
-    e.g.:
-<pre><code>{
+}
+```
+e.g.:
+```javascript
+{
     "745": {
         "pos": 0,
         "type": "normal"
     }
-}</code></pre>
+}
+```
+
     </td>
 </tr>
 </table>
