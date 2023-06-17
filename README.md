@@ -4,6 +4,13 @@
 ```html
 <script src="audioToBeatmap.js" type="module"></script>
 ```
+```javascript
+audioToBeatmap(
+    AUDIO_URL, BEATS_PER_SECOND, SUCCESSIVE_THRESHOLD, LONG_THRESHOLD, FILTER
+).then((beatmap) => {
+    // process beatmap
+});
+```
 
 ## WebWorker
 ```javascript
@@ -19,6 +26,7 @@ worker.postMessage([
 worker.onmessage = (msg) => {
     if (typeof msg.data == 'object' && msg.data !== null) {
         let beatmap = msg.data;
+        // process beatmap
     
     } else {
         alert(msg.data); // "ERROR: {error message}"
@@ -27,6 +35,15 @@ worker.onmessage = (msg) => {
 ```
 
 ## NodeJs
+```javascript
+const audioToBeatmap = require('./audioToBeatmapNodeJS');
+
+audioToBeatmap.audioToBeatmap(
+    AUDIO_URL, BEATS_PER_SECOND, SUCCESSIVE_THRESHOLD, LONG_THRESHOLD, FILTER
+).then((beatmap) => {
+    // process beatmap
+});
+```
 
 ## demo
 Try a working example at: <https://audiotobeatmap.onrender.com/>
