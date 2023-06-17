@@ -5,8 +5,8 @@
 &emsp;&emsp;**audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true<br>**
 **)**
 
-|<td colspan="2">Parameters</th>|
-|-------------------------------|
+|<th colspan="2">Parameters</th>|
+|--------------|----------------|
 |1|2|
 
 <table>
