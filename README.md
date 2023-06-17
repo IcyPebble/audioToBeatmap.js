@@ -1,8 +1,8 @@
 # audioToBeatmap.js
 
 ## Usage
-**async audioToBeatmap(**
-    **audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true**
+**async audioToBeatmap(\n**
+    **audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true\n**
 **)**
 
 ### HTML
@@ -12,7 +12,7 @@
 ```javascript
 audioToBeatmap(audioURL, beatsPerSecond, successiveThreshold, longThreshold, filter)
     .then((beatmap) => {
-    // process beatmap
+        // process beatmap
     });
 ```
 
@@ -43,7 +43,7 @@ const audioToBeatmap = require('./audioToBeatmap_NodeJS');
 
 audioToBeatmap.audioToBeatmap(monoAudioArray, beatsPerSecond, successiveThreshold, longThreshold, filter)
     .then((beatmap) => {
-    // process beatmap
+        // process beatmap
     });
 ```
 
