@@ -36,8 +36,9 @@
 </tr>
 <tr>
     <td><b>beatmap</b></td>
-    <td>object containing note information in the following format:<br>
+    <td>
 
+object containing note information in the following format:<br>
 ```javascript
 {
     "{time in ms}": {
@@ -56,7 +57,6 @@ e.g.:
 }
 ```
 
-    </td>
 </tr>
 </table>
 
