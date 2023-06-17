@@ -34,6 +34,7 @@
 <tr>
     <th colspan="2">Returns</th>
 </tr>
+<tr></tr>
 <tr>
     <td><b>beatmap</b></td>
     <td>
