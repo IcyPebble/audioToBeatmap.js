@@ -1,9 +1,7 @@
 # audioToBeatmap.js
 
 ## Usage
-**async audioToBeatmap(<br>**
-&emsp;&emsp;**audioURL, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true<br>**
-**)**
+**async audioToBeatmap(audioURL, nPositions = 5, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true)**
 
 <table>
 <tr>
@@ -12,6 +10,10 @@
 <tr>
     <td>audioURL</td>
     <td>HTML: web url or blob uri of a audio file<br>WebWorker/NodeJS: mono audio signal array {Float32Array}</td>
+</tr>
+<tr>
+    <td>nPositions</td>
+    <td>number of positions where notes can appear</td>
 </tr>
 <tr>
     <td>beatsPerSecond</td>

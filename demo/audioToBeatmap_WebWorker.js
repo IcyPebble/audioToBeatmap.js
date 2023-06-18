@@ -239,14 +239,14 @@ function removeFastSuccessiveNotes(beatmap, threshold) {
 }
 
 async function audioToBeatmap(
-    monoAudioArray, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true) {
+    monoAudioArray, nPositions = 5, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true) {
     let pitch = await melodyExtraction(monoAudioArray, filter);
     pitch = smoothFreqWithMidi(pitch);
 
     let step = Math.trunc((1 / (128 / 44100)) / beatsPerSecond);
     pitch = sliceSound(pitch, step);
 
-    let rhythm = freqToRhythm(pitch, 128 / 44100 * 1000, 5, longThreshold);
+    let rhythm = freqToRhythm(pitch, 128 / 44100 * 1000, nPositions, longThreshold);
     let intRhythm = {}
     Object.keys(rhythm).forEach((k) => {
         intRhythm[Math.round(k)] = rhythm[k]
@@ -259,7 +259,7 @@ async function audioToBeatmap(
 
 onmessage = (msg) => {
     let args = msg.data;
-    audioToBeatmap(args[0], args[1], args[2], args[3], args[4]).then(
+    audioToBeatmap(args[0], args[1], args[2], args[3], args[4], args[5]).then(
         postMessage,
         (e) => { postMessage(`ERROR: ${e.message}`); }
     );

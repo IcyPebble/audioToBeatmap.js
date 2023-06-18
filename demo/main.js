@@ -719,7 +719,7 @@ function generateBeatmap() {
         .then((audioBuffer) => {
             worker.postMessage(
                 [
-                    audioBuffertoMono(audioBuffer), BEATS_PER_SECOND,
+                    audioBuffertoMono(audioBuffer), 5, BEATS_PER_SECOND,
                     SUCCESSIVE_THRESHOLD, Infinity, FILTER
                 ]
             );
