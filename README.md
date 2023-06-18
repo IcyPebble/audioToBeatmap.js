@@ -67,7 +67,7 @@ e.g.:
 <script src="audioToBeatmap.js" type="module"></script>
 ```
 ```javascript
-audioToBeatmap(audioURL, beatsPerSecond, successiveThreshold, longThreshold, filter)
+audioToBeatmap(audioURL, nPositions, beatsPerSecond, successiveThreshold, longThreshold, filter)
     .then((beatmap) => {
         // process beatmap
     });
@@ -79,7 +79,7 @@ let worker = new Worker('audioToBeatmap_WebWorker.js', { type: "module" });
 
 // send arguments
 worker.postMessage([
-    monoAudioArray, beatsPerSecond, successiveThreshold, longThreshold, filter
+    monoAudioArray, nPositions, beatsPerSecond, successiveThreshold, longThreshold, filter
 ]);
 
 // get result
@@ -98,7 +98,7 @@ worker.onmessage = (msg) => {
 ```javascript
 const audioToBeatmap = require('./audioToBeatmap_NodeJS');
 
-audioToBeatmap.audioToBeatmap(monoAudioArray, beatsPerSecond, successiveThreshold, longThreshold, filter)
+audioToBeatmap.audioToBeatmap(monoAudioArray, nPositions, beatsPerSecond, successiveThreshold, longThreshold, filter)
     .then((beatmap) => {
         // process beatmap
     });
