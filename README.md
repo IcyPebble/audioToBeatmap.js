@@ -1,10 +1,12 @@
 # audioToBeatmap.js
+Description
+
+**Table of Contents**
 + [Usage](#usage)
     + [HTML application example](#html-application-example)
     + [WebWorker application example](#webworker-application-example)
     + [NodeJS application example](#nodejs-application-example)
 + [Demo](#demo)
-
 
 ## Usage
 **async audioToBeatmap(audioURL, nPositions = 5, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true)**
