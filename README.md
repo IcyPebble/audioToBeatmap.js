@@ -66,7 +66,7 @@ e.g.:
 </tr>
 </table>
 
-### HTML
+### HTML application example
 ```html
 <script src="audioToBeatmap.js" type="module"></script>
 ```
@@ -77,7 +77,7 @@ audioToBeatmap(audioURL, nPositions, beatsPerSecond, successiveThreshold, longTh
     });
 ```
 
-### WebWorker
+### WebWorker application example
 ```javascript
 let worker = new Worker('audioToBeatmap_WebWorker.js', { type: "module" });
 
@@ -98,7 +98,7 @@ worker.onmessage = (msg) => {
 };
 ```
 
-### NodeJs
+### NodeJs application example
 ```javascript
 const audioToBeatmap = require('./audioToBeatmap_NodeJS');
 
