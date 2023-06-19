@@ -59,10 +59,10 @@ e.g.:
 }
 ```
 
-</tr>
+<br></tr>
 <tr>
     <td>error<br>(only for the WebWorker version)</td>
-    <td>a string indicating that an error has occurred, as follows:<br><code>'ERROR: {message}'</code></td>
+    <td>a string indicating that an error has occurred, as follows:<br><code>"ERROR: {message}"</code></td>
 </tr>
 </table>
 
