@@ -9,27 +9,27 @@
 </tr>
 <tr>
     <td>audioURL</td>
-    <td>HTML: web url or blob uri of a audio file<br>WebWorker/NodeJS: mono audio signal array {Float32Array}</td>
+    <td>HTML: web url or blob uri of a audio file {String}<br>WebWorker/NodeJS: mono audio signal array {Float32Array}</td>
 </tr>
 <tr>
     <td>nPositions</td>
-    <td>number of positions where notes can appear</td>
+    <td>number of positions where notes can appear {Integer}</td>
 </tr>
 <tr>
     <td>beatsPerSecond</td>
-    <td>number of sounds per second of the audio that are analyzed</td>
+    <td>number of sounds per second of the audio that are analyzed {Number}</td>
 </tr>
 <tr>
     <td>successiveThreshold</td>
-    <td>minimum time interval between notes in milliseconds</td>
+    <td>minimum time interval between notes in milliseconds {Integer}</td>
 </tr>
 <tr>
     <td>longThreshold</td>
-    <td>minimum duration in milliseconds for a note to be considered long</td>
+    <td>minimum duration in milliseconds for a note to be considered long {Number}</td>
 </tr>
 <tr>
     <td>filter</td>
-    <td>whether an equal-loudness filter should be applied or not</td>
+    <td>whether an equal-loudness filter should be applied or not {Boolean}</td>
 </tr>
 <tr></tr>
 <tr>
@@ -104,5 +104,5 @@ audioToBeatmap.audioToBeatmap(monoAudioArray, nPositions, beatsPerSecond, succes
     });
 ```
 
-## demo
+## Demo
 Try a working example at: <https://audiotobeatmap.onrender.com/>

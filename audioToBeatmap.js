@@ -245,12 +245,48 @@ function removeFastSuccessiveNotes(beatmap, threshold) {
     return result;
 }
 
+function validateType(audioURL, nPositions, beatsPerSecond, successiveThreshold, longThreshold, filter) {
+    if (typeof audioURL != 'string') {
+        throw new TypeError(
+            `audioURL must be of type 'string', not '${typeof audioURL}'`
+        );
+    }
+    if (!Number.isInteger(nPositions) || nPositions < 2) {
+        throw new TypeError(
+            `nPositions must be an integer >= 2, not ${nPositions} of type '${typeof nPositions}'`
+        );
+    }
+    if (typeof beatsPerSecond != 'number' || beatsPerSecond <= 0) {
+        throw new TypeError(
+            `beatsPerSecond must be a number > 0, not ${beatsPerSecond} of type '${typeof beatsPerSecond}'`
+        );
+    }
+    if (!Number.isInteger(successiveThreshold) || successiveThreshold < 0) {
+        throw new TypeError(
+            `successiveThreshold must be an integer >= 0, not ${successiveThreshold} of type '${typeof successiveThreshold}`
+        );
+    }
+    if (typeof longThreshold != 'number' || longThreshold < 0) {
+        throw new TypeError(
+            `longThreshold must be a number >= 0, not ${longThreshold} of type '${typeof longThreshold}'`
+        );
+    }
+    if (typeof filter != 'boolean') {
+        throw new TypeError(
+            `filter must be of type 'boolean', not '${typeof filter}'`
+        );
+    }
+}
+
 window.audioToBeatmap = async function (
     audioURL, nPositions = 5, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true) {
+    validateType(...arguments);
+
     let pitch = await melodyExtraction(audioURL, filter);
     pitch = smoothFreqWithMidi(pitch);
 
     let step = Math.trunc((1 / (128 / 44100)) / beatsPerSecond);
+    step = ((step > 0) ? step : 1);
     pitch = sliceSound(pitch, step);
 
     let rhythm = freqToRhythm(pitch, 128 / 44100 * 1000, nPositions, longThreshold);
