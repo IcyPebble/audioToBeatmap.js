@@ -1,5 +1,5 @@
 # audioToBeatmap.js
-```audioToBeatmap.js``` is a JavaScript utility for creating rhythm game beatmaps for almost any audio. The programme begins by extracting the melody from the audio using the MELODIA algorithm. Afterwards, the utility generates an object that contains all the individual notes derived from the extracted melody.
+```audioToBeatmap.js``` is a JavaScript utility for creating rhythm game beatmaps for almost any audio. The programme begins by extracting the melody from the audio using the [MELODIA algorithm](https://www.justinsalamon.com/melody-extraction.html). Afterwards, the utility generates an object that contains all the individual notes derived from the extracted melody.
 
 **Table of Contents**
 + [Usage](#usage)
