@@ -1,7 +1,7 @@
-import Essentia from 'https://cdn.jsdelivr.net/npm/essentia.js@0.1.3/dist/essentia.js-core.es.js';
-import { EssentiaWASM } from 'https://cdn.jsdelivr.net/npm/essentia.js@0.1.3/dist/essentia-wasm.es.js';
-
-const essentia = new Essentia(EssentiaWASM);
+let essentia;
+EssentiaWASM().then((EssentiaWasm) => {
+    essentia = new Essentia(EssentiaWasm)
+});
 
 async function melodyExtraction(audioURL, filter) {
     //load audio
@@ -282,6 +282,16 @@ window.audioToBeatmap = async function (
     audioURL, nPositions = 5, beatsPerSecond = 4, successiveThreshold = 400, longThreshold = 900, filter = true) {
     validateType(...arguments);
 
+    let t = 0;
+    while (!essentia) {
+        if (t > 10000) {
+            throw new Error('Loading resources took too long');
+        }
+
+        await new Promise(r => setTimeout(r, 100));
+        t += 100;
+    }
+
     let pitch = await melodyExtraction(audioURL, filter);
     pitch = smoothFreqWithMidi(pitch);
 
@@ -302,6 +312,8 @@ window.audioToBeatmap = async function (
 
 // only use 'shutdown' if audioToBeatmap or melodyExtraction are not reused later in the program
 window.shutdown = function () {
-    essentia.shutdown();
-    essentia.delete();
+    if (essentia) {
+        essentia.shutdown();
+        essentia.delete();
+    }
 }

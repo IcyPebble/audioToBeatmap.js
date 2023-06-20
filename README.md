@@ -82,7 +82,11 @@ e.g.:
 
 ### HTML application example
 ```html
-<script src="audioToBeatmap.js" type="module"></script>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/essentia.js@0.1.3/dist/essentia.js-core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/essentia.js@0.1.3/dist/essentia-wasm.web.js"></script>
+    <script src="audioToBeatmap.js"></script>
+</head>
 ```
 ```javascript
 audioToBeatmap(audioURL, nPositions, beatsPerSecond, successiveThreshold, longThreshold, filter)
