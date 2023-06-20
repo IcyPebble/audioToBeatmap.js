@@ -23,7 +23,11 @@ Description
 </tr>
 <tr>
     <td>audioURL</td>
-    <td>HTML: web url or blob uri of a audio file {String}<br>WebWorker/NodeJS: mono audio signal array {Float32Array}</td>
+    <td>
+    HTML: web url or blob uri of a audio file {String}<br>
+    WebWorker/NodeJS: mono audio signal array {Float32Array}<br>
+    ([How do I get a mono audio array?](/demo/README.md#convert-audio-file-to-mono-audio-array))
+    </td>
 </tr>
 <tr>
     <td>nPositions</td>
@@ -125,6 +129,9 @@ audioToBeatmap.audioToBeatmap(monoAudioArray, nPositions, beatsPerSecond, succes
         // process beatmap
     });
 ```
+
+**Dependencies:**
++ essentia.js: ^0.1.3
 
 ## Demo
 Try a working example at: <https://audiotobeatmap.onrender.com/>
