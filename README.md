@@ -26,7 +26,7 @@ Description
     <td>
     HTML: web url or blob uri of a audio file {String}<br>
     WebWorker/NodeJS: mono audio signal array {Float32Array}<br>
-    ([How do I get a mono audio array?](/demo/README.md#convert-audio-file-to-mono-audio-array))
+    ([How do I get a mono audio array?](./demo/README.md#convert-audio-file-to-mono-audio-array))
     </td>
 </tr>
 <tr>
